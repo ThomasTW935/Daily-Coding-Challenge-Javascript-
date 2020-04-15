@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    let min = 1
+    let max = 20
+    let length = 10
+
+    let numList = RandomListOfNum(min, max, length)
+    let k = RandomNum(min, max) + (max - min)
+
+
+    let found = false
+    let firstNum
+    let secondNum
+
+    for (num1 of numList) {
+      let diff = k - num1
+      for (num2 of numList) {
+        if (num2 == diff && numList.indexOf(num1) != numList.lastIndexOf(num2)) {
+          found = true
+          firstNum = num1
+          secondNum = num2
+          break
+        }
+      }
+      if (found) {
+        break
+      }
+    }
+    console.log('List: ' + numList)
+    console.log('K: ' + k)
+    if (found) {
+      console.log(firstNum + ' + ' + secondNum + ' = ' + k)
+    } else {
+      console.log("No pairs equal to K found")
+    }
+
+
+
+    function RandomNum(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
+    function RandomListOfNum(min, max, length) {
+      let list = []
+      for (let i = 0; i < length; i++) {
+        let randNum = RandomNum(min, max)
+        list.push(randNum)
+      }
+      return list
+    }
+
+  </script>
+</body>
+
+</html>
+
+<!-- 
+Good morning! Here's your coding interview problem for today.
+
+This problem was recently asked by Google.
+
+Given a list of numbers and a number k, return whether any two numbers from the list add up to k.
+
+For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
+
+Bonus: Can you do this in one pass? -->
