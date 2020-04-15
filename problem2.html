@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    let min = 1
+    let max = 10
+    let length = 5
+
+    let numList = RandomListOfNum(min, max, length)
+    numList = numList.sort((a, b) => {
+      return a - b
+    })
+    let sum = 1
+    for (let num of numList) {
+      sum *= num
+    }
+    let newNumList = []
+    for (let num of numList) {
+      newNumList.push(sum / num)
+    }
+
+    console.log('List: ' + numList + ' Total: ' + sum)
+    console.log('Output: ' + newNumList)
+
+
+    let newNumListWOD = []
+    for (let num of numList) {
+      let sumWOD = 1
+      for (let i = 0; i < numList.length; i++) {
+        if (num != numList[i]) {
+          sumWOD *= numList[i]
+        }
+      }
+      newNumListWOD.push(sumWOD)
+    }
+
+    console.log(' ')
+    console.log('Without Division')
+    console.log('List: ' + numList + ' Total: ' + sum)
+    console.log('Output: ' + newNumListWOD)
+
+
+
+    function RandomNum(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
+    function RandomListOfNum(min, max, length) {
+      let list = []
+      for (let i = 0; i < length; i++) {
+        let randNum = RandomNum(min, max)
+        if (list.lastIndexOf(randNum) < 0) {
+          list.push(randNum)
+        }
+      }
+      return list
+    }
+
+  </script>
+</body>
+
+</html>
+
+<!--
+
+Problem #2 [Hard]
+
+Good morning! Here's your coding interview problem for today.
+
+This problem was asked by Uber.
+
+Given an array of integers, return a new array such that each element at index i of the new array is the product of all the numbers in the original array except the one at i.
+
+For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output would be [2, 3, 6].
+
+Follow-up: what if you can't use division?
+
+-->
