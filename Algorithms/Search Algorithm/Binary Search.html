@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    let min = 1
+    let max = 10
+    let length = 10
+
+
+    let numList = GenRandomList(min, max, length)
+    numList = numList.sort((a, b) => { return a - b })
+
+    let findNum = GenRandomNum(min, max)
+
+    let result = BinarySearch(numList, 0, numList.length - 1, findNum)
+
+    console.log(numList)
+    console.log('Look for number ' + findNum)
+
+    if (result == -1) {
+      console.log('Number not found')
+    } else {
+      console.log('Number found at ' + result)
+    }
+
+
+
+
+    function BinarySearch(list, location, count, findNum) {
+      if (count >= location) {
+        let mid = Math.ceil(location + (count - location) / 2)
+        if (list[mid] == findNum) {
+          return Math.floor(mid)
+        }
+        if (list[mid] > findNum) {
+          return BinarySearch(list, location, mid - 1, findNum)
+        }
+        return BinarySearch(list, mid + 1, count, findNum)
+      } else {
+        return -1
+      }
+    }
+
+    function GenRandomNum(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
+    function GenRandomList(min, max, length) {
+      let newList = []
+      for (let i = 0; i < length; i++) {
+        let ranNum = GenRandomNum(min, max)
+        if (newList.lastIndexOf(ranNum) < 0) {
+          newList.push(ranNum)
+        }
+      }
+      return newList
+    }
+
+  </script>
+
+</body>
+
+</html>
+
+<!-- Binary Search: Search a sorted array by repeatedly dividing the search interval in half. Begin with an interval covering the whole array. If the value of the search key is less than the item in the middle of the interval, narrow the interval to the lower half. Otherwise narrow it to the upper half. Repeatedly check until the value is found or the interval is empty. -->

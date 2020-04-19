@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    let min = -10
+    let max = 6
+    let length = 10
+
+    let numList = RandomListOfNum(min, max, length)
+    numList.sort((a, b) => { return a - b })
+
+    let newNumList = numList.filter(RemoveNegative)
+
+    let num = 1
+    console.log('List: ' + numList)
+    console.log('Integer: ' + newNumList)
+
+
+    function RemoveNegative(num) {
+      return num >= 0
+    }
+
+    function RandomNum(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
+    function RandomListOfNum(min, max, length) {
+      let list = []
+      for (let i = 0; i < length; i++) {
+        let randNum = RandomNum(min, max)
+        list.push(randNum)
+      }
+      return list
+    }
+
+  </script>
+</body>
+
+</html>
+
+<!-- 
+Problem #4 [Hard]
+
+
+Good morning! Here's your coding interview problem for today.
+
+This problem was asked by Stripe.
+
+Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.
+
+For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.
+
+You can modify the input array in-place.
+-->

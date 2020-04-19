@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    let min = 5
+    let max = 10
+    let length = 10
+
+
+    let numList = GenRandomList(min, max, length)
+
+    let findNum = 5
+    let found = false
+    let index
+
+    console.log(numList)
+    console.log('Look for number ' + findNum)
+    for (let i = 0; i < numList.length; i++) {
+      if (findNum == numList[i]) {
+        found = true
+        index = i
+      }
+    }
+
+    if (found) {
+      console.log(findNum + ' found at position ' + index)
+    } else {
+      console.log(findNum + ' not found')
+    }
+
+    function GenRandomNum(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
+    function GenRandomList(min, max, length) {
+      let newList = []
+      for (let i = 0; i < length; i++) {
+        let ranNum = GenRandomNum(min, max)
+        if (newList.lastIndexOf(ranNum) < 0) {
+          newList.push(ranNum)
+        }
+      }
+      return newList
+    }
+
+  </script>
+
+</body>
+
+</html>
+
+<!-- Linear Search - a sequential search is made over all items one by one. -->
