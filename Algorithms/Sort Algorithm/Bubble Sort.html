@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+
+    let min = 5
+    let max = 10
+    let length = 10
+    let sortType = 'asc'
+
+    let unsortedList = GenRandomList(length, min, max)
+    let sortedList = BubbleSort(unsortedList, 0, sortType)
+
+    console.log('Unsorted: ' + unsortedList)
+    console.log('  Sorted: ' + sortedList)
+
+
+    function BubbleSort(list, index, type = 'asc') {
+      if (type == 'asc') {
+        if (list[index] <= list[index + 1]) {
+          BubbleSort(list, index + 1, type)
+        }
+        if (list[index] > list[index + 1]) {
+          let temp = list[index]
+          list[index] = list[index + 1]
+          list[index + 1] = temp
+          BubbleSort(list, index + 1, type)
+        }
+      }
+      console.log(list)
+      return list
+    }
+
+    function GenRandomList(length, min, max, list = []) {
+      if (list.length < length) {
+        let ranNum = GenRandomNum(min, max)
+        list.push(ranNum)
+        GenRandomList(length, min, max, list)
+      }
+      return list
+    }
+
+    function GenRandomNum(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
+  </script>
+
+</body>
+
+</html>
