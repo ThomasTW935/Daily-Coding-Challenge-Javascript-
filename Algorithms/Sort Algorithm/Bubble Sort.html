@@ -12,31 +12,37 @@
   <script>
 
 
-    let min = 5
+    let min = 1
     let max = 10
     let length = 10
     let sortType = 'asc'
 
     let unsortedList = GenRandomList(length, min, max)
-    let sortedList = BubbleSort(unsortedList, 0, sortType)
+    //let sortedList = BubbleSort(unsortedList, 0, sortType)
+    let sortedList = BubbleSort(unsortedList, type = 'desc')
 
     console.log('Unsorted: ' + unsortedList)
     console.log('  Sorted: ' + sortedList)
 
 
-    function BubbleSort(list, index, type = 'asc') {
-      if (type == 'asc') {
-        if (list[index] <= list[index + 1]) {
-          BubbleSort(list, index + 1, type)
-        }
-        if (list[index] > list[index + 1]) {
-          let temp = list[index]
-          list[index] = list[index + 1]
-          list[index + 1] = temp
-          BubbleSort(list, index + 1, type)
+    function BubbleSort(list, type = 'asc') {
+      for (let i = 0; i < list.length; i++) {
+        console.log(list[i])
+        for (let j = 0; j < list.length; j++) {
+          if (type == 'asc' && list[j] > list[j + 1]) {
+            console.log(list)
+            let temp = list[j]
+            list[j] = list[j + 1]
+            list[j + 1] = temp
+          }
+          if (type == 'desc' && list[j] < list[j + 1]) {
+            console.log(list)
+            let temp = list[j]
+            list[j] = list[j + 1]
+            list[j + 1] = temp
+          }
         }
       }
-      console.log(list)
       return list
     }
 
